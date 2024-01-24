@@ -5,11 +5,13 @@ import gersay.spring_jwt.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/auth")
-public class UserController {
+@RequestMapping("/auth/admin")
+public class AdminController {
     @Autowired
     private UserInfoService service;
 
@@ -19,15 +21,10 @@ public class UserController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-
-    @GetMapping("/userProfile")
-    @PreAuthorize("hasRole('USER')")
-    public String userProfile() {
-        return "Welcome to User Profile";
+    @GetMapping("/adminProfile")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public String adminProfile() {
+        return "Welcome to Admin Profile";
     }
-
-
-
-
 
 }
