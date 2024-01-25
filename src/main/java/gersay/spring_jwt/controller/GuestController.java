@@ -12,6 +12,11 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 
 @RestController
 @RequestMapping("/auth/guest")
@@ -51,4 +56,6 @@ public class GuestController {
             return jwtService.generateToken(authRequest.getUsername());
         throw new UsernameNotFoundException("invalid user request !");
     }
+
+
 }

@@ -6,6 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 
 @RestController
 @RequestMapping("/auth/user")
@@ -26,6 +31,8 @@ public class UserController {
     public String userProfile() {
         return "Welcome to User Profile";
     }
+
+    /////////////////////////////////////////////////////////////////
 
 
 

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/auth/admin")
-@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 
 public class AdminController {
     @Autowired
@@ -26,6 +26,11 @@ public class AdminController {
     @GetMapping("/adminProfile")
     public String adminProfile() {
         return "Welcome to Admin Profile";
+    }
+
+    @GetMapping("/users")
+    public String users() {
+        return null;
     }
 
 }

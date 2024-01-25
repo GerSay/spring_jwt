@@ -38,11 +38,12 @@ public class SecurityConfig {
                //   Need to disable csrf() to be able to open POST requests
         return http.cors(AbstractHttpConfigurer::disable).csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/auth/guest/**").permitAll()
+                        .requestMatchers("/auth/guest/**", "/auth/files/**").permitAll()
                 //.authorizeHttpRequests((auth) -> auth
                         .requestMatchers("/auth/user/**").authenticated()
                 //.authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/auth/admin/**").authenticated())
+                        .requestMatchers("/auth/admin/**").hasAnyAuthority("ROLE_ADMIN")
+                        .anyRequest().permitAll())
                 .sessionManagement((auth) -> auth
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
