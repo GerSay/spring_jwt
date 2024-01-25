@@ -36,12 +36,12 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
                //   Need to disable csrf() to be able to open POST requests
-        return http.csrf(AbstractHttpConfigurer::disable)
+        return http.cors(AbstractHttpConfigurer::disable).csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/auth/guest/**").permitAll())
-                .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/auth/user/**").authenticated())
-                .authorizeHttpRequests((auth) -> auth
+                        .requestMatchers("/auth/guest/**").permitAll()
+                //.authorizeHttpRequests((auth) -> auth
+                        .requestMatchers("/auth/user/**").authenticated()
+                //.authorizeHttpRequests((auth) -> auth
                         .requestMatchers("/auth/admin/**").authenticated())
                 .sessionManagement((auth) -> auth
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))

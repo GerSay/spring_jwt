@@ -8,7 +8,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/auth/user")
+@PreAuthorize("hasAnyAuthority('ROLE_USER')")
 public class UserController {
     @Autowired
     private UserInfoService service;
@@ -21,7 +22,7 @@ public class UserController {
 
 
     @GetMapping("/userProfile")
-    @PreAuthorize("hasRole('USER')")
+    //@PreAuthorize("hasAnyAuthority('ROLE_USER')")
     public String userProfile() {
         return "Welcome to User Profile";
     }
