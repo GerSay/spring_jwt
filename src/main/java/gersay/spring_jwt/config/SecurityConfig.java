@@ -40,7 +40,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((auth) -> auth
                         .requestMatchers("/auth/guest/**", "/auth/files/**").permitAll()
                 //.authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/auth/user/**").authenticated()
+                        //.requestMatchers("/auth/user/**").authenticated()
                 //.authorizeHttpRequests((auth) -> auth
                         .requestMatchers("/auth/admin/**").hasAnyAuthority("ROLE_ADMIN")
                         .anyRequest().permitAll())
